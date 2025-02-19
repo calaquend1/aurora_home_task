@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/aurora_home_task/static/css/main.05ad5509.css",
+    "main.js": "/aurora_home_task/static/js/main.78456d58.js",
+    "index.html": "/aurora_home_task/index.html",
+    "main.05ad5509.css.map": "/aurora_home_task/static/css/main.05ad5509.css.map",
+    "main.78456d58.js.map": "/aurora_home_task/static/js/main.78456d58.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.05ad5509.css",
+    "static/js/main.78456d58.js"
+  ]
+}
