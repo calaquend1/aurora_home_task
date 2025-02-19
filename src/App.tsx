@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import MovieList from "./components/MovieList";
+import Pagination from "./components/Pagination";
+import "./index.css";
+import { useMovies } from "./hooks/useMovies";
 
-function App() {
+const limit = 10; // Movies per page
+
+const App: React.FC = () => {
+  const [page, setPage] = useState<number>(1);
+
+  const { data, error, isLoading, isFetching, refetch } = useMovies(page, limit);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Movie List</h1>
+
+      {isLoading && (
+        <div className="loading-container">
+          <div className="spinner"></div>
+        </div>
+      )}
+
+      {error && !isLoading && (
+        <div className="error-message">
+          <p>Failed to load movies. Please try again.</p>
+          <button onClick={() => refetch()}>Retry</button>
+        </div>
+      )}
+
+      {!isLoading && !error && data?.items && (
+        <>
+          <Pagination page={page} total={data.total} limit={limit} setPage={setPage} />
+          <MovieList movies={data.items} />
+        </>
+      )}
+
+      {isFetching && <p className="fetching-indicator">Updating movies...</p>}
     </div>
   );
-}
+};
 
 export default App;
