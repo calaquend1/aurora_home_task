@@ -3,7 +3,7 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main  # Change "main" to your default branch (e.g., "master")
+      - master
 
 permissions:
   contents: write
